@@ -54,6 +54,8 @@ class ManagementProductResource extends Resource
             Tables\Columns\ImageColumn::make('foto')
                 ->label('Foto Produk'),
         ])
+
+        
         ->filters([
             Tables\Filters\Filter::make('nama')
                 ->form([
@@ -68,10 +70,12 @@ class ManagementProductResource extends Resource
         ])
         ->actions([
             Tables\Actions\ViewAction::make(),
-            Tables\Actions\EditAction::make()
-                ->visible(fn () => auth()->user()->role !== 'sales'), // Hide Edit action for sales role
-            Tables\Actions\DeleteAction::make()
-                ->visible(fn () => auth()->user()->role !== 'sales'), // Hide Delete action for sales role
+            Tables\Actions\EditAction::make(), // Hide Edit action for sales role
+            Tables\Actions\DeleteAction::make(), // Hide Delete action for sales role
+            // Tables\Actions\EditAction::make()
+            //     ->visible(fn () => auth()->user()->role !== 'sales'), // Hide Edit action for sales role
+            // Tables\Actions\DeleteAction::make()
+            //     ->visible(fn () => auth()->user()->role !== 'sales'), // Hide Delete action for sales role
         ])
         ->bulkActions([
             Tables\Actions\DeleteBulkAction::make(),

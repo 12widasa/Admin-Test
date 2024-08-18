@@ -18,14 +18,14 @@ class EditManagementProduct extends EditRecord
         ];
     }
 
-    protected function canEdit(): bool
-{
-    return auth()->user()->can('updateProduct', $this->record);
-}
+//     protected function canEdit(): bool
+// {
+//     return auth()->user()->can('updateProduct', $this->record);
+// }
 
-protected function canDelete(): bool
-{
-    return auth()->user()->can('deleteProduct', $this->record);
-}
+// protected function canDelete(): bool
+// {
+//     return auth()->user()->can('deleteProduct', $this->record);
+// }
 
 }

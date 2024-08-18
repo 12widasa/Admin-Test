@@ -16,7 +16,8 @@ class ListManagementProducts extends ListRecords
         $decodeQueryString = urldecode(request()->getQueryString());
 
        return [
-        Actions\CreateAction::make()->visible(auth()->user()->can('createProduct', User::class)),
+        Actions\CreateAction::make(),
+        // Actions\CreateAction::make()->visible(auth()->user()->can('createProduct', User::class)),
         Actions\Action::make('export')
             ->label('Export XLSX')
             ->icon('heroicon-o-document-arrow-down')

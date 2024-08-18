@@ -67,6 +67,8 @@ class FormSalesResource extends Resource
         ];
     }
 
+    
+
     public static function getPages(): array
     {
         return [
@@ -76,18 +78,14 @@ class FormSalesResource extends Resource
         ];
     }
 
-    public static function canCreate(): bool
-    {
-        return Auth::user()->role === User::ROLE_SALES;
-    }
-
-    // public static function canEdit(FormSales $record): bool
+    // public static function canCreate(): bool
     // {
-    //     return false; // Disable editing
+    //     // Izinkan hanya user dengan peran 'superadmin'
+    //     return Auth::user()->role === 'superadmin';
     // }
-
-    // public static function canDelete(FormSales $record): bool
+    //     public static function canViewAny(): bool
     // {
-    //     return false; // Disable deleting
+    //     // Izinkan hanya user dengan peran 'superadmin'
+    //     return Auth::user()->role === 'superadmin';
     // }
 }

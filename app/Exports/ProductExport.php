@@ -24,7 +24,8 @@ class ProductExport implements FromQuery, WithHeadings
     {
         return [
             'Nama',
-            'Total Penjualan',
+            'Stok Produk',
+            // produk terjual
         ];
     }
 }

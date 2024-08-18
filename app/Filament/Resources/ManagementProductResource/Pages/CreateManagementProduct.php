@@ -11,9 +11,9 @@ class CreateManagementProduct extends CreateRecord
 {
     protected static string $resource = ManagementProductResource::class;
     
-    protected function canCreate(): bool
-{
-    return auth()->user()->can('createProduct', User::class);
-}
+//     protected function canCreate(): bool
+// {
+//     return auth()->user()->can('createProduct', User::class);
+// }
 
 }

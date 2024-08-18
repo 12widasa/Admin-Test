@@ -10,6 +10,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class SalesReportResource extends Resource
 {
@@ -64,12 +65,12 @@ class SalesReportResource extends Resource
                     ),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                // Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Tables\Actions\BulkActionGroup::make([
+                //     Tables\Actions\DeleteBulkAction::make(),
+                // ]),
             ]);
     }
 
@@ -85,6 +86,13 @@ class SalesReportResource extends Resource
         return [
             'index' => Pages\ListSalesReports::route('/'),
         ];
+    }
+
+    // 
+        public static function canViewAny(): bool
+    {
+        // Izinkan hanya user dengan peran 'sales'
+        return true;
     }
 
     public static function getEloquentQuery(): Builder

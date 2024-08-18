@@ -27,11 +27,7 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // Menambahkan kondisi untuk menyembunyikan resource berdasarkan peran user
-    public static function shouldRegisterNavigation(): bool
-    {
-        // Hanya tampilkan halaman ini jika bukan "sales"
-        return Auth::user()->role !== 'sales';
-    }
+
 
     public static function form(Form $form): Form
     {

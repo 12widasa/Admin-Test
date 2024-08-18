@@ -21,12 +21,6 @@ class ListRoleResource extends Resource
 
     protected static ?string $navigationLabel = 'List Role';
 
-        public static function shouldRegisterNavigation(): bool
-    {
-        // Hanya tampilkan halaman ini jika bukan "sales"
-        return Auth::user()->role !== 'sales';
-    }
-
     public static function form(Form $form): Form
     {
         return $form
