@@ -47,4 +47,9 @@ class FormSales extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    
+    public function formSales()
+    {
+        return $this->hasMany(FormSales::class, 'product_id');
+    }
 }

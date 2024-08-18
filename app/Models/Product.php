@@ -24,4 +24,9 @@ class Product extends Model
     {
         return $this->hasMany(FormSales::class);
     }
+
+    public function getTotalPenjualanAttribute()
+    {
+        return $this->formSales()->sum('stok_terjual');
+    }
 }

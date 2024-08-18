@@ -6,6 +6,7 @@ use App\Filament\Resources\ManagementProductResource\Pages;
 use App\Filament\Resources\ManagementProductResource\RelationManagers;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\FormSales;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\DB;
 
 class ManagementProductResource extends Resource
 {
@@ -31,31 +33,39 @@ class ManagementProductResource extends Resource
                 Forms\Components\FileUpload::make('foto')
                     ->required()
                     ->label('Foto Produk'),
-
-                Forms\Components\TextInput::make('stok')
-                    ->numeric()
-                    ->label('Stok Produk'),
-
-                Forms\Components\TextInput::make('total_penjualan')
-                    ->numeric()
-                    ->label('Total Penjualan Produk'),
             ]);
     }
 
     public static function table(Table $table): Table
 {
     return $table
+        // ->columns([
+        //     Tables\Columns\TextColumn::make('nama')
+        //         ->sortable()
+        //         ->searchable()
+        //         ->label('Nama Produk'),
+
+        //     Tables\Columns\ImageColumn::make('foto')
+        //         ->label('Foto Produk'),
+        // ])
+
         ->columns([
-            Tables\Columns\TextColumn::make('nama')
-                ->sortable()
-                ->searchable()
-                ->label('Nama Produk'),
+                Tables\Columns\TextColumn::make('nama')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Nama Produk'),
+                Tables\Columns\ImageColumn::make('foto')
+                    ->label('Foto Produk'),
+                Tables\Columns\TextColumn::make('stok_sekarang')
+                    ->label('Stok Produk'),
+                Tables\Columns\TextColumn::make('total_penjualan')
+                    ->label('Total Penjualan Produk')
+                    ->getStateUsing(fn ($record) => $record->total_penjualan)
+                    ->sortable()
+                    ->searchable(),
+            ])
 
-            Tables\Columns\ImageColumn::make('foto')
-                ->label('Foto Produk'),
-        ])
 
-        
         ->filters([
             Tables\Filters\Filter::make('nama')
                 ->form([
